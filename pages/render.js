@@ -60,9 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
 
+
+
     // 页面加载后自动获取数据
     //fetchQuestions();
 });
+
+
 
 
 // 按钮：查询数据
@@ -111,23 +115,9 @@ myAPI.onDataReceived((data) => {
 // 渲染用户列表到 HTML
 const renderUsers = (users) => {
     // usersTableBody.innerHTML = ''; // 清空旧数据
-
-
-
-    
-    console.log(users.id);
+ console.log(users.id);
     console.log(users.name);
     console.log(users.email);
-    // users.forEach(user => {
-    //     const row = document.createElement('tr');
-    //     row.innerHTML = `
-    //         <td>${user.id}</td>
-    //         <td>${user.name}</td>
-    //         <td>${user.email}</td>
-    //     `;
-    //     usersTableBody.appendChild(row);
-    // });
-
 
  
 };

@@ -1,77 +1,97 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-      <meta charset="UTF-8" />
-      <title>有我必成</title>
-      <link rel="stylesheet" href="./index.css">
-      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">     
-    </head>
-
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有我必成</title>
+    <link rel="stylesheet" href="./index.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+</head>
+<body>
     <div class="container">
-      <!-- 导航栏 -->
-      <nav class="nav-bar">
-        <div class="nav-left">
-          <select class="dropdown">
-              <option>公司</option>
-              <option>公司A</option>
-              <option>公司B</option>
-          </select>
-          <select class="dropdown">
-              <option>部门</option>
-              <option>部门1</option>
-              <option>部门2</option>
-          </select>
-          <select class="dropdown">
-              <option>岗位不限</option>
-              <option>岗位1</option>
-              <option>岗位2</option>
-          </select>
-          <button class="report-button">我要爆料</button>
-      </div>
-      <form class="search-box">
-        <input type="text" placeholder="搜索题目名称或编号">
-        <button class="submit-button">搜索</button>
-      </form>
-      </nav>
+        <!-- 导航栏 -->
+        <nav class="nav-bar">
+            <div class="nav-left">
+                <select class="dropdown">
+                    <option>公司</option>
+                    <option>公司A</option>
+                    <option>公司B</option>
+                </select>
+                <select class="dropdown">
+                    <option>部门</option>
+                    <option>部门1</option>
+                    <option>部门2</option>
+                </select>
+                <select class="dropdown">
+                    <option>岗位不限</option>
+                    <option>岗位1</option>
+                    <option>岗位2</option>
+                </select>
+                <button class="report-button">我要爆料</button>
+            </div>
+            <form class="search-box">
+                <input type="text" placeholder="搜索题目名称或编号">
+                <button class="submit-button">搜索</button>
+            </form>
+        </nav>
 
-      <!-- 统计信息 -->
-      <div class="stats">
-          <div class="stat-item">已完成<span>36/1116</span></div>
-          <div class="stat-item">简单<span>13</span></div>
-          <div class="stat-item">中等<span>23</span></div>
-          <div class="stat-item">困难<span>0</span></div>
-          <button class="submit-button" id="btn1">登录数据库</button>
-          <button class="submit-button" id="btn2">查询数据库</button>
-          <button class="submit-button" id="addbtn">添加内容</button>
+        <!-- 统计信息 -->
+        <div class="stats">
+            <div class="stat-item">已完成 <span>36/1116</span></div>
+            <div class="stat-item">简单 <span>13</span></div>
+            <div class="stat-item">中等 <span>23</span></div>
+            <div class="stat-item">困难 <span>0</span></div>
+            <button class="submit-button" id="btn1">登录数据库</button>
+            <button class="submit-button" id="btn2">查询数据库</button>
+            <button class="submit-button" id="addbtn">添加内容</button>
+        </div>
 
-      </div>
+        <!-- 题目表格 -->
+        <table class="question-table">
+            <thead>
+                <tr>
+                    <th>状态</th>
+                    <th>公司</th>
+                    <th>岗位</th>
+                    <th>城市</th>
+                    <th>薪资待遇</th>
+                    <th>进度</th>
+                    <th>补充</th>
+                    <th>总结</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="question-list">
+                <!-- 动态生成 -->
+            </tbody>
+        </table>
+    </div>
 
-      <!-- 题目表格 -->
-      <table class="question-table">
-          <thead>
-              <tr>
-                  <th>状态</th>
-                  <th>公司</th>
-                  <th>岗位</th>
-                  <th>城市</th>
-                  <th>薪资待遇</th>
-                  <th>进度</th>
-                  <th>补充</th>
-                  <th>总结</th>
-                  <th>操作</th>
-              </tr>
-          </thead>
-          <tbody id="question-list">
-              <!-- 动态生成 -->
-          </tbody>
-      </table>
-
-      <script type = "text/javascript" src="./render.js"></script>
-
-      
-  </div>
-  
+    <!-- 本地音乐播放器 -->
+    <div class="music-option">   
+        <audio id="audioPlayer" controls></audio>
+            <!-- 音乐播放控制 -->
+        <div class="play">
+            <button class="submit-button" id="selectFile">选择音乐文件</button>
+            <button class="submit-button" id="playbtn1">上一曲</button>
+            <button class="submit-button" id="playbtn2">播放</button>
+            <button class="submit-button" id="pausebtn">暂停</button>
+            <button class="submit-button" id="playbtn3">下一曲</button>
+        </div>
+    </div>
 
 
+
+    <script src="./render.js"></script>
+    <script>
+        document.getElementById('selectFile').addEventListener('click', async () => {
+            const filePath = await window.myAPI.selectFile();
+            if (filePath) {
+                const audioPlayer = document.getElementById('audioPlayer');
+                audioPlayer.src = `file://${filePath}`;
+                audioPlayer.play();
+            }
+        });
+    </script>
 </body>
 </html>

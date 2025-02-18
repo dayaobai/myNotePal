@@ -1,18 +1,9 @@
-const {app,BrowserWindow,ipcMain} = require('electron')
+const {app,BrowserWindow,ipcMain, dialog} = require('electron')
 const path = require('path')
 const fs = require('fs')
 const {connectToDatabase, queryDatabase} = require('./db');  // 引入数据库连接
 
 
-// function writeFile(_,data){
-//     fs.writeFileSync('D:/hello.txt',data)
-// }
-
-// function readFile(){
-//     const res = fs.readFileSync('D:/hello.txt').toString()
-//     // console.log('###',res)
-//     return res
-// }
 
 
 
@@ -26,11 +17,13 @@ function createwindow() {
             nodeIntegration: false,
             contextIsolation:true,
             spellcheck: false // 禁用拼写检查
-        }
+        },
+        
 
     })
     // ipcMain.on('file-save', writeFile)
     // ipcMain.handle('file-read', readFile)
+
 
 
     win.loadFile('./pages/index.html');
@@ -111,4 +104,18 @@ ipcMain.on('add-record', (event, record) => {
             event.reply('add-record-success', { id: results.insertId }); // 发送成功消息到渲染进程
         }
     });
+});
+
+
+// 监听文件选择
+ipcMain.handle('select-file', async () => {
+    const result = await dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [{ name: 'Audio', extensions: ['mp3', 'wav', 'ogg'] }]
+    });
+    console.log("w222");
+    if (!result.canceled && result.filePaths.length > 0) {
+        return result.filePaths[0];  // 返回选择的文件路径
+    }
+    return null;
 });

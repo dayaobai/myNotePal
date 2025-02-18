@@ -134,3 +134,17 @@
 .actions button:hover {
     background: #e9ecef;
 }
+
+
+.music-option {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+
+}
+
+
+.music-option play {
+    width: 100%;
+    margin-top: 5px;
+}

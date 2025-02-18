@@ -29,8 +29,15 @@ contextBridge.exposeInMainWorld('myAPI', {
     
   },
 
+
+
   openEditWindow: () => ipcRenderer.send('open-edit-window'),
 
-  addRecord: (record) => ipcRenderer.send('add-record', record)
+  addRecord: (record) => ipcRenderer.send('add-record', record),
+
+  selectFile: () => ipcRenderer.invoke('select-file'),
+
+  onMusicPlay: (callback) => ipcRenderer.on('play-music', (_, filePath) => callback(filePath))
+
 
 });
