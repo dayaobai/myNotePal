@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+      <meta charset="UTF-8" />
+      <title>有我必成</title>
+      <link rel="stylesheet" href="./index.css">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">     
+    </head>
+
+    <div class="container">
+      <!-- 导航栏 -->
+      <nav class="nav-bar">
+        <div class="nav-left">
+          <select class="dropdown">
+              <option>公司</option>
+              <option>公司A</option>
+              <option>公司B</option>
+          </select>
+          <select class="dropdown">
+              <option>部门</option>
+              <option>部门1</option>
+              <option>部门2</option>
+          </select>
+          <select class="dropdown">
+              <option>岗位不限</option>
+              <option>岗位1</option>
+              <option>岗位2</option>
+          </select>
+          <button class="report-button">我要爆料</button>
+      </div>
+      <form class="search-box">
+        <input type="text" placeholder="搜索题目名称或编号">
+        <button class="submit-button">搜索</button>
+      </form>
+      </nav>
+
+      <!-- 统计信息 -->
+      <div class="stats">
+          <div class="stat-item">已完成<span>36/1116</span></div>
+          <div class="stat-item">简单<span>13</span></div>
+          <div class="stat-item">中等<span>23</span></div>
+          <div class="stat-item">困难<span>0</span></div>
+          <button class="submit-button" id="btn1">登录数据库</button>
+          <button class="submit-button" id="btn2">查询数据库</button>
+          <button class="submit-button" id="addbtn">添加内容</button>
+
+      </div>
+
+      <!-- 题目表格 -->
+      <table class="question-table">
+          <thead>
+              <tr>
+                  <th>状态</th>
+                  <th>公司</th>
+                  <th>岗位</th>
+                  <th>城市</th>
+                  <th>薪资待遇</th>
+                  <th>进度</th>
+                  <th>补充</th>
+                  <th>总结</th>
+                  <th>操作</th>
+              </tr>
+          </thead>
+          <tbody id="question-list">
+              <!-- 动态生成 -->
+          </tbody>
+      </table>
+
+      <script type = "text/javascript" src="./render.js"></script>
+
+      
+  </div>
+  
+
+
+</body>
+</html>
